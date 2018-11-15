@@ -173,7 +173,7 @@ module OpenFEC.Types (
   TotalsCommittee (..),
   TotalsCommitteePage (..),
   -- added
-  Day
+  Date
   ) where
 
 import           Data.Aeson         (FromJSON (..), ToJSON (..), Value,

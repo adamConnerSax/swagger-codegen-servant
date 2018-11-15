@@ -1,14 +1,14 @@
-{-# LANGUAGE DataKinds #-}
-{-# LANGUAGE DeriveGeneric #-}
-{-# LANGUAGE DeriveTraversable #-}
-{-# LANGUAGE FlexibleContexts #-}
-{-# LANGUAGE FlexibleInstances #-}
+{-# LANGUAGE DataKinds                  #-}
+{-# LANGUAGE DeriveGeneric              #-}
+{-# LANGUAGE DeriveTraversable          #-}
+{-# LANGUAGE FlexibleContexts           #-}
+{-# LANGUAGE FlexibleInstances          #-}
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
-{-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE RecordWildCards #-}
-{-# LANGUAGE TypeFamilies #-}
-{-# LANGUAGE TypeOperators #-}
-{-# LANGUAGE ViewPatterns #-}
+{-# LANGUAGE OverloadedStrings          #-}
+{-# LANGUAGE RecordWildCards            #-}
+{-# LANGUAGE TypeFamilies               #-}
+{-# LANGUAGE TypeOperators              #-}
+{-# LANGUAGE ViewPatterns               #-}
 {-# OPTIONS_GHC
 -fno-warn-unused-binds -fno-warn-unused-imports -fcontext-stack=328 #-}
 
@@ -25,29 +25,31 @@ module OpenFEC.API
   , OpenFECAPI
   ) where
 
-import OpenFEC.Types
+import           OpenFEC.Types
 
-import Control.Monad.Except (ExceptT)
-import Control.Monad.IO.Class
-import Data.Aeson (Value)
-import Data.Coerce (coerce)
-import Data.Function ((&))
-import qualified Data.Map as Map
-import Data.Monoid ((<>))
-import Data.Proxy (Proxy(..))
-import Data.Text (Text)
-import qualified Data.Text as T
-import GHC.Exts (IsString(..))
-import GHC.Generics (Generic)
-import Network.HTTP.Client (Manager, defaultManagerSettings, newManager)
-import Network.HTTP.Types.Method (methodOptions)
-import qualified Network.Wai.Handler.Warp as Warp
-import Servant (ServantErr, serve)
-import Servant.API
-import Servant.API.Verbs (StdMethod(..), Verb)
-import Servant.Client (Scheme(Http), ServantError, client)
-import Servant.Common.BaseUrl (BaseUrl(..))
-import Web.HttpApiData
+import           Control.Monad.Except      (ExceptT)
+import           Control.Monad.IO.Class
+import           Data.Aeson                (Value)
+import           Data.Coerce               (coerce)
+import           Data.Function             ((&))
+import qualified Data.Map                  as Map
+import           Data.Monoid               ((<>))
+import           Data.Proxy                (Proxy (..))
+import           Data.Text                 (Text)
+import qualified Data.Text                 as T
+import           GHC.Exts                  (IsString (..))
+import           GHC.Generics              (Generic)
+import           Network.HTTP.Client       (Manager, defaultManagerSettings,
+                                            newManager)
+import           Network.HTTP.Types.Method (methodOptions)
+import qualified Network.Wai.Handler.Warp  as Warp
+import           Servant                   (ServantErr, serve)
+import           Servant.API
+import           Servant.API.Verbs         (StdMethod (..), Verb)
+import           Servant.Client            (BaseUrl (..), Scheme (Http),
+                                            ServantError, client)
+--import           Servant.Common.BaseUrl    (BaseUrl (..))
+import           Web.HttpApiData
 
 
 
@@ -59,7 +61,7 @@ lookupEither key assocs =
     Nothing -> Left $ "Could not find parameter " <> (T.unpack key) <> " in form data"
     Just value ->
       case parseQueryParam value of
-        Left result -> Left $ T.unpack result
+        Left result  -> Left $ T.unpack result
         Right result -> Right $ result
 
 -- | Servant type-level API, generated from the Swagger spec for OpenFEC.

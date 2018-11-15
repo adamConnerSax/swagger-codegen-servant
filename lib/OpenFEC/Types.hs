@@ -172,6 +172,8 @@ module OpenFEC.Types (
   StateElectionOfficeInfoPage (..),
   TotalsCommittee (..),
   TotalsCommitteePage (..),
+  -- added
+  Day
   ) where
 
 import           Data.Aeson         (FromJSON (..), ToJSON (..), Value,

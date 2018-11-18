@@ -1,5 +1,6 @@
 dist
 dist-new
+dist-newstyle
 log
 *.cfg
 *.swp
